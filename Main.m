@@ -8,110 +8,41 @@
 %                    Audrey Lebel-Richardson 1665999            %
 % ----------------------------------------------------------- 	%
 
-%Remise à zéro : effacer les variables et le contenu de l'écran
-clc;
-format long
-global positionsBalleOpt1 positionsBalleOpt2 positionsBalleOpt3;
-
-%++++++++++++++++++++++++++ESSAI 1++++++++++++++++++++++++++	%
-essai = 1;
-rbi = [0.00 0.50 1.10];
-vbi = [4.00 0.00 0.80];
-wbi = [0.00 -70.00 0.00];
-
-positionsBalleOpt1 = rbi;
-positionsBalleOpt2 = rbi;
-positionsBalleOpt3 = rbi;
-
-nbOption = 3;
-for option=1:nbOption
-    [coup, tf, rbf, vbf] = Devoir2(option, rbi, vbi, wbi);
-
-    fprintf('OPTION : %d , ESSAI : %d \n',option, essai);
-    fprintf('Coup : %d \n',coup);
-    fprintf('tf : %d \n',tf);
-    disp('rbf :');
-    disp(rbf);
-    disp('vbf :');
-    disp(vbf);
-end
-graphique(1);
-
-%++++++++++++++++++++++++++ESSAI 2++++++++++++++++++++++++++	%
-essai = 2;
-rbi = [0.00 0.40 1.14];
-vbi = [10.00 1.00 0.20];
-wbi = [0.00 100.00 -50.00];
-
-positionsBalleOpt1 = rbi;
-positionsBalleOpt2 = rbi;
-positionsBalleOpt3 = rbi;
-
-nbOption = 3;
-for option=1:nbOption
-    [coup, tf, rbf, vbf] = Devoir2(option, rbi, vbi, wbi);
-
-    fprintf('OPTION : %d , ESSAI : %d \n',option, essai);
-    fprintf('Coup : %d \n',coup);
-    fprintf('tf : %d \n',tf);
-    disp('rbf :');
-    disp(rbf);
-    disp('vbf :');
-    disp(vbf);
-end
-graphique(2);
-
-%++++++++++++++++++++++++++ESSAI 3++++++++++++++++++++++++++	%
-essai = 3;
-rbi = [2.74 0.50 1.14];
-vbi = [-5.00 0.00 0.20];
-wbi = [0.00 100.00 0.00];
-
-positionsBalleOpt1 = rbi;
-positionsBalleOpt2 = rbi;
-positionsBalleOpt3 = rbi;
-
-nbOption = 3;
-for option=1:nbOption
-    [coup, tf, rbf, vbf] = Devoir2(option, rbi, vbi, wbi);
-
-    fprintf('OPTION : %d , ESSAI : %d \n',option, essai);
-    fprintf('Coup : %d \n',coup);
-    fprintf('tf : %d \n',tf);
-    disp('rbf :');
-    disp(rbf);
-    disp('vbf :');
-    disp(vbf);
-end
-graphique(3);
-
-
-% ++++++++++++++++++++++++++ESSAI 4++++++++++++++++++++++++++	%
-essai = 4;
-rbi = [0.00 0.30 1.00];
-vbi = [10.00 -2.00 0.20];
-wbi = [0.00 10.00 -100.00];
-
-positionsBalleOpt1 = rbi;
-positionsBalleOpt2 = rbi;
-positionsBalleOpt3 = rbi;
-
-nbOption = 3;
-
-for option=1:nbOption
-    [coup, tf, rbf, vbf] = Devoir2(option, rbi, vbi, wbi);
-
-    fprintf('OPTION : %d , ESSAI : %d \n',option, essai);
-    fprintf('Coup : %d \n',coup);
-    fprintf('tf : %d \n',tf);
-    disp('rbf :');
-    disp(rbf);
-    disp('vbf :');
-    disp(vbf);
-    
-end
-graphique(4);
+%--------------------------------essai 1 -----------------------%
+%sample data for now
+[rai, vai, rbi, vbi, tb] = getDonneesCas(1);
+[Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
+disp('------ Essai 1 ------');
+disp('Col1');
+disp(Col1);
+disp('tf');
+disp(tf);
+disp('raf');
+disp(raf);
+disp('vaf');
+disp(vaf);
+disp('rbf');
+disp(rbf);
+disp('vbf');
+disp(vbf); 
+%--------------------------------essai 2 -----------------------%
+%[rai, vai, rbi, vbi, tb] = getDonneesCas(2);
+%[Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
 
 
 
+%--------------------------------essai 3 -----------------------%
+%[rai, vai, rbi, vbi, tb] = getDonneesCas(3);
+%[Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
 
+%--------------------------------essai 4 -----------------------%
+%[rai, vai, rbi, vbi, tb] = getDonneesCas(4);
+%[Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
+
+%--------------------------------essai 5 -----------------------%
+%[rai, vai, rbi, vbi, tb] = getDonneesCas(5);
+%[Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
+
+%--------------------------------essai 6 -----------------------%
+%[rai, vai, rbi, vbi, tb] = getDonneesCas(6);
+%[Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
