@@ -1,24 +1,13 @@
-function [H, J] = getConstantesProbleme()
-%
+function [g, u, e] = getConstantesProbleme()
+
 % Cette fonction retourne des constantes du probleme
 %
-% H = -pCvA/2   ou  p : masse volumique de l aire
-%                   Cv: coefficient de traînée de la balle
-%                   A : aire efficace de la balle
-% A = pi*R^2    ou  R : rayon de la balle
-%
-% J =4piCm*p*R^3 ou Cm: coefficient magnus
-% 
+% u : coefficient de frottement cinétique
+% g : coefficient de traînée de la balle
+% e : coefficient de restitution lors d’une collision entre les autos
 
-% Donnees du probleme
-[R, ~] = getDonneesBalle();
-p = 1.2;
-Cv = 0.5;
-A = pi*(R^2);
-Cm = 0.29;
+g = -9.8;
 
-% Calcul des constantes
+u = 0.15;
 
-H = (-1)*(p*Cv*A)/2;
-
-J = 4*pi*Cm*p*(R^3);
+e = 0.8;
