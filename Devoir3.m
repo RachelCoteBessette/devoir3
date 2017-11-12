@@ -18,7 +18,14 @@ qsolB = zeros(nbi+1, 6);
 angleAutoB = atan(vbi(2)/vbi(1));
 qsolB(1,:) = vertcat(transpose(vbi), transpose(rbi), angleAutoB);
 
+
+
 for i = 1:nbi
+    qACourante = qsolA(i,:);
+    qBCourante = qsolB(i,:);
+    donneesCollisionA = getDonneesDetectionCollision(qACourante, 'a');
+    
+    
     if(t0 >= tb)
         matriceGAutoB = 'getMatriceGGlissement';
     else
@@ -26,10 +33,10 @@ for i = 1:nbi
     end
     
     % auto A
-    qsolA(i+1,:) = SEDRK4t0(qsolA(i,:), DeltaT, matriceGAutoA);
+    qsolA(i+1,:) = SEDRK4t0(qACourante, DeltaT, matriceGAutoA);
     
     % auto B
-    qsolB(i+1,:) = SEDRK4t0(qsolB(i,:), DeltaT, matriceGAutoB);
+    qsolB(i+1,:) = SEDRK4t0(qBCourante, DeltaT, matriceGAutoB);
     
     t0 = t0 + DeltaT;
 end
