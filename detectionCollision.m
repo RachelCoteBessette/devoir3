@@ -7,13 +7,13 @@ planSeparationTrouve = 0;
 
 %Voiture A
 for i = 1:4 %Chaque surface
-    n = donneesCollisionA(5, i);
-    q = donneesCollisionA(1, i);
+    n = [donneesCollisionA(16, i) donneesCollisionA(17, i) donneesCollisionA(18, i)] ;
+    q = [donneesCollisionA(1, i) donneesCollisionA(2, i) donneesCollisionA(3, i)];
 
     sommetsEnDessous = 0;
-    for j = 1:4 %Chaque sommet
+    for j = 1:3:7 %Chaque sommet
 
-        r = donneesCollisionB(1, j);
+        r = [donneesCollisionB(j, i) donneesCollisionB(j+1, i) donneesCollisionB(j+2, i)];
         d = dot(n, (r-q));
 
         if (d <= 0)
@@ -25,15 +25,15 @@ for i = 1:4 %Chaque surface
     end
 end
 
-%Voiture B
+%Voiture A
 for i = 1:4 %Chaque surface
-    n = donneesCollisionB(5, i);
-    q = donneesCollisionB(1, i);
+    n = [donneesCollisionB(16, i) donneesCollisionB(17, i) donneesCollisionB(18, i)] ;
+    q = [donneesCollisionB(1, i) donneesCollisionB(2, i) donneesCollisionB(3, i)];
 
     sommetsEnDessous = 0;
-    for j = 1:4 %Chaque sommet
+    for j = 1:3:7 %Chaque sommet
 
-        r = donneesCollisionA(1, j);
+        r = [donneesCollisionA(j, i) donneesCollisionA(j+1, i) donneesCollisionA(j+2, i)];
         d = dot(n, (r-q));
 
         if (d <= 0)
