@@ -1,85 +1,73 @@
 function donneesDetectionCollision = getDonneesDetectionCollision(qCourante, auto)
 % auto : prend a ou b
 % qCourante : prend la matrice q courante 
+ 
+    pointsOrigineAuto = get4PointsOrigineAuto(auto);
+    rot = getMatriceRotation(qCourante(6)); % le sixieme element est langle
+    pointsRotates = rot* pointsOrigineAuto; % me donne une 4 colonne, 3 rows
+    % pointsRotates(1,:) : extrait la premiere rangee de la matrice pointsRotates
+    % qui represente les x pour tous les points
+    nouveauxX = pointsRotates(1,:) + qCourante(4);
+    nouveauxY = pointsRotates(2,:) + qCourante(5);
+    nouveauxZ = pointsRotates(3,:) + 0;
+    
+    pointAutoDansRepereGlobal = vertcat(nouveauxX, nouveauxY, nouveauxZ);
+    
+% auto dans le repere lorsquelle est ramenee a lorigine du plan 
+%                          
+%                   long     surface 1
+%                  1--------------2   
+%          larg    |              |   
+%      surface 4   |              |    surface 2
+%                  |              |
+%                  4--------------3
+%                      surface 3
 
-%calculer les nouveaux points de lauto
-    pointsAutoA = get4PointsOrigineAuto(auto);
-    point1OrigineA = pointsAutoA(1);
-    rotA = getMatriceRotation(qAutoACourante(6)); % le sixieme element est langle     
-    point1A = rotA*point1OrigineA + [qACourante(4), qACourante(5), 0];
-    point2A = rotA*point2OrigineA + [qACourante(4), qACourante(5), 0];
-    point3A = rotA*point3OrigineA + [qACourante(4), qACourante(5), 0];
-    point4A = rotA*point4OrigineA + [qACourante(4), qACourante(5), 0];
+% on suppose que tous les solides ont une extension infinie dans la direction z 
+% etant donne quon regarde sils ont eu des collisions dans le plan xy
+
+    % surface 1, reliant les points 1-2
+    qk1Surf1 = pointAutoDansRepereGlobal(:,1); 
+    qk2Surf1 = pointAutoDansRepereGlobal(:,2);
+    qk3Surf1 = qk2Surf1 + transpose([0, 0, -1]); 
+    pk1Surf1 = qk1Surf1 - qk2Surf1;
+    pk2Surf1 = qk1Surf1 - qk3Surf1;
+    % cross sert a faire un produit vectoriel
+    produitVectSurf1 = cross(pk1Surf1,pk2Surf1);
+    nkSurf1 = produitVectSurf1/ norm(produitVectSurf1); 
     
-    %   schema des points de lauto dans lespace
-    %            surface 2
-    %             4---1
-    % surface 3   |   |  surface 1
-    %             3---2
-    %           surface 4
+    % surface 2, reliant les points 2-3
+    qk1Surf2 = pointAutoDansRepereGlobal(:,3);
+    qk2Surf2 = pointAutoDansRepereGlobal(:,2);
+    qk3Surf2 = qk2Surf2 + transpose([0, 0, -1]);
+    pk1Surf2 = qk1Surf2 - qk2Surf2;
+    pk2Surf2 = qk1Surf2 - qk3Surf2;
+    produitVectSurf2 = cross(pk1Surf2,pk2Surf2);
+    nkSurf2 = produitVectSurf2/ norm(produitVectSurf2);  
     
-    % surface reliant les points 1-2
-    qk1Asurf1 = point1A; 
-    qk2Asurf1 = point2A;
-    qk3Asurf1 = qk2Asurf1 + [0, 0, -1]; %sens antihoraire %TODO : valider que cest bon
+    % surface 3, reliant les points 3-4
+    qk1Surf3 = pointAutoDansRepereGlobal(:,4);
+    qk2Surf3 = pointAutoDansRepereGlobal(:,3);
+    qk3Surf3 = qk2Surf3 + transpose([0, 0, -1]);
+    pk1Surf3 = qk1Surf3 - qk2Surf3;
+    pk2Surf3 = qk1Surf3 - qk3Surf3;
+    produitVectSurf3 = cross(pk1Surf3,pk2Surf3);
+    nkSurf3 = produitVectSurf3/ norm(produitVectSurf3);  
     
-    % surface reliant les points 2-3
-    qk1Asurf2 = point2A;
-    qk2Asurf2 = point3A;
-    qk3Asurf2 = qk2Asurf2 + [0,0, -1];
-    
-    % surface reliant les points 3-4
-    qk1surf3 = point3A;
-    qk2surf3 = point4A;
-    qk2surf4 = qk2surf3 + [0,0, -1];
-    
-    %surface reliant les points 4-1
-    qk1surf4 = point4A;
-    qk2surf4 = point1A;
-    qk3surf4 = qk2surf4 + [0,0, -1];
-    
-    %sample data for now (so that audrey understands what the hell is going
-    %on
-    %surface 1
-    qk11 = 2.1; % qk1 pour la surface 1
-    qk21 = 2.1; % qk2 pour la surface 1
-    qk31 = 2.1;
-    pk11 = 2.1; %pk1 pour la surface 1
-    pk21 = 2.1; %pk2 pour la surface 1
-    nk1 = 2.1; % nk1 pour la surface 1
-    %surface 2
-    qk12 = 2.1;
-    qk22 = 2.1;
-    qk32 = 2.1;
-    pk11 = 2.1;
-    pk21 = 2.1;
-    nk1 = 2.1;
-    %surface 3
-    qk13 = 2.1;
-    qk23 = 2.1;
-    qk33 = 2.1;
-    pk11 = 2.1;
-    pk21 = 2.1;
-    nk1 = 2.1;
-    %surface 4
-    qk14 = 2.1;
-    qk24 = 2.1;
-    qk34 = 2.1;
-    pk11 = 2.1;
-    pk21 = 2.1;
-    nk1 = 2.1;
-    
-    %   schema des points de lauto dans lespace
-    %            surface 2
-    %             4---1
-    % surface 3   |   |  surface 1
-    %             3---2
-    %           surface 4
+    %surface 4, reliant les points 1,4
+    qk1Surf4 = pointAutoDansRepereGlobal(:,1);
+    qk2Surf4 = pointAutoDansRepereGlobal(:,4);
+    qk3Surf4 = qk2Surf4 + transpose([0, 0, -1]);
+    pk1Surf4 = qk1Surf4 - qk2Surf4;
+    pk2Surf4 = qk1Surf4 - qk3Surf4;
+    produitVectSurf4 = cross(pk1Surf4,pk2Surf4);
+    nkSurf4 = produitVectSurf4/ norm(produitVectSurf4);  
     
     donneesDetectionCollision = [...
-        qk11 qk21 qk31 pk11 pk21 nk1; ... % surface1
-        qk11 qk21 qk31 pk11 pk21 nk1; ... % surface2
-        qk11 qk21 qk31 pk11 pk21 nk1; ... % surface 3
-        qk11 qk21 qk31 pk11 pk21 nk1; ... % surface 4
-   ]
-        
+        qk1Surf1 qk1Surf2 qk1Surf3 qk1Surf4; ...
+        qk2Surf1 qk2Surf2 qk2Surf3 qk2Surf4; ...
+        qk3Surf1 qk3Surf2 qk3Surf3 qk3Surf4; ...
+        pk1Surf1 pk1Surf2 pk1Surf3 pk1Surf4; ...
+        pk2Surf1 pk2Surf2 pk2Surf3 pk2Surf4; ... 
+        nkSurf1 nkSurf2 nkSurf3 nkSurf4; ...
+    ]
