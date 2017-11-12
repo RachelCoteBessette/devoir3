@@ -15,9 +15,11 @@ wbf = [0 0 0];
 [ma,~,~,~] = getDonneesAutoA();
 [mb,~,~,~] = getDonneesAutoB();
 [~,~,e] = getConstantesProbleme();
-j = (-1)*(1+e)*vrmoins/(1.0/ma+1.0/mb);
 Ia = matriceInertie();
 Ib = matriceInertie();
+Ga = dot(n,(cross(inv(Ia)*(cross(rap,n)),rap)));
+Gb = dot(n,(cross(inv(Ib)*(cross(rbp,n)),rbp)));
+j = (-1)*(1+e)*vrmoins/(1.0/ma+1.0/mb+Ga+Gb);
 waf = wai + j*inv(Ia)*(cross(rap,n));
 wbf = wbi + j*inv(Ib)*(cross(rbp,n));
 
