@@ -26,6 +26,8 @@ for i = 1:nbi
     donneesCollisionA = getDonneesDetectionCollision(qACourante, 'a');
     donneesCollisionB = getDonneesDetectionCollision(qBCourante, 'b');
     
+    nbPlanSeparation = detectionCollision(donneesCollisionA, donneesCollisionB);
+    
     % TODO : implementer le double for qui detecte sil y a collision avec
     % les donnees donneesCollisionA, donnneesCollisionB
     % outer for : surfaces
