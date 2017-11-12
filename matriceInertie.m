@@ -18,4 +18,6 @@ matriceRotation = [ cos(omega) -sin(omega) 0; ...
                     sin(omega) cos(omega) 0; ...
                     0 0 1];
 
-matriceInertie = Ic*matriceRotation;
+matriceInertie = matriceRotation*Ic/matriceRotation;
+% Issu de la documentation matlab : "If A is a square matrix, B/A is
+% roughly equal to B*inv(A), but MATLAB processes B/A differently and more robustly."
