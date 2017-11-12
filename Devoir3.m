@@ -1,7 +1,7 @@
 function [Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb)
 
 % gestion du temps 
-tlimits = [0 1]
+tlimits = [0 1];
 nbi = 10000;
 DeltaT = (tlimits(2)-tlimits(1))/nbi
 t0 = tlimits(1);
@@ -23,10 +23,10 @@ qsolB(1,:) = vertcat(transpose(vbi), transpose(rbi), angleAutoB);
 for i = 1:nbi
     qACourante = qsolA(i,:);
     qBCourante = qsolB(i,:);
-    donneesCollisionA = getDonneesDetectionCollision(qACourante, 'a');
-    donneesCollisionB = getDonneesDetectionCollision(qBCourante, 'b');
+    [coordADsRepereGlobal, donneesCollisionA] = getDonneesDetectionCollision(qACourante, 'a');
+    [coordBDsRepereGlobal, donneesCollisionB] = getDonneesDetectionCollision(qBCourante, 'b');
     
-    nbPlanSeparation = detectionCollision(donneesCollisionA, donneesCollisionB);
+    [boolCollision, matriceCoinsAutoA, matriceCoinsAutoB] = detectionCollision(donneesCollisionA, donneesCollisionB, coordADsRepereGlobal, coordBDsRepereGlobal);
     
     % TODO : implementer le double for qui detecte sil y a collision avec
     % les donnees donneesCollisionA, donnneesCollisionB

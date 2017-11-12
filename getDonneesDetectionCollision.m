@@ -1,4 +1,4 @@
-function donneesDetectionCollision = getDonneesDetectionCollision(qCourante, auto)
+function [pointsAutoDansRepereGlobal, donneesDetectionCollision] = getDonneesDetectionCollision(qCourante, auto)
 % auto : prend a ou b
 % qCourante : prend la matrice q courante 
  
@@ -11,7 +11,7 @@ function donneesDetectionCollision = getDonneesDetectionCollision(qCourante, aut
     nouveauxY = pointsRotates(2,:) + qCourante(5);
     nouveauxZ = pointsRotates(3,:) + 0;
     
-    pointAutoDansRepereGlobal = vertcat(nouveauxX, nouveauxY, nouveauxZ);
+    pointsAutoDansRepereGlobal = vertcat(nouveauxX, nouveauxY, nouveauxZ);
     
 % auto dans le repere lorsquelle est ramenee a lorigine du plan 
 %                          
@@ -27,8 +27,8 @@ function donneesDetectionCollision = getDonneesDetectionCollision(qCourante, aut
 % etant donne quon regarde sils ont eu des collisions dans le plan xy
 
     % surface 1, reliant les points 1-2
-    qk1Surf1 = pointAutoDansRepereGlobal(:,1); 
-    qk2Surf1 = pointAutoDansRepereGlobal(:,2);
+    qk1Surf1 = pointsAutoDansRepereGlobal(:,1); 
+    qk2Surf1 = pointsAutoDansRepereGlobal(:,2);
     qk3Surf1 = qk2Surf1 + transpose([0, 0, -1]); 
     pk1Surf1 = qk1Surf1 - qk2Surf1;
     pk2Surf1 = qk1Surf1 - qk3Surf1;
@@ -37,8 +37,8 @@ function donneesDetectionCollision = getDonneesDetectionCollision(qCourante, aut
     nkSurf1 = produitVectSurf1/ norm(produitVectSurf1); 
     
     % surface 2, reliant les points 2-3
-    qk1Surf2 = pointAutoDansRepereGlobal(:,3);
-    qk2Surf2 = pointAutoDansRepereGlobal(:,2);
+    qk1Surf2 = pointsAutoDansRepereGlobal(:,3);
+    qk2Surf2 = pointsAutoDansRepereGlobal(:,2);
     qk3Surf2 = qk2Surf2 + transpose([0, 0, -1]);
     pk1Surf2 = qk1Surf2 - qk2Surf2;
     pk2Surf2 = qk1Surf2 - qk3Surf2;
@@ -46,8 +46,8 @@ function donneesDetectionCollision = getDonneesDetectionCollision(qCourante, aut
     nkSurf2 = produitVectSurf2/ norm(produitVectSurf2);  
     
     % surface 3, reliant les points 3-4
-    qk1Surf3 = pointAutoDansRepereGlobal(:,4);
-    qk2Surf3 = pointAutoDansRepereGlobal(:,3);
+    qk1Surf3 = pointsAutoDansRepereGlobal(:,4);
+    qk2Surf3 = pointsAutoDansRepereGlobal(:,3);
     qk3Surf3 = qk2Surf3 + transpose([0, 0, -1]);
     pk1Surf3 = qk1Surf3 - qk2Surf3;
     pk2Surf3 = qk1Surf3 - qk3Surf3;
@@ -55,8 +55,8 @@ function donneesDetectionCollision = getDonneesDetectionCollision(qCourante, aut
     nkSurf3 = produitVectSurf3/ norm(produitVectSurf3);  
     
     %surface 4, reliant les points 1,4
-    qk1Surf4 = pointAutoDansRepereGlobal(:,1);
-    qk2Surf4 = pointAutoDansRepereGlobal(:,4);
+    qk1Surf4 = pointsAutoDansRepereGlobal(:,1);
+    qk2Surf4 = pointsAutoDansRepereGlobal(:,4);
     qk3Surf4 = qk2Surf4 + transpose([0, 0, -1]);
     pk1Surf4 = qk1Surf4 - qk2Surf4;
     pk2Surf4 = qk1Surf4 - qk3Surf4;
