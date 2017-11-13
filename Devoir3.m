@@ -5,6 +5,7 @@ tlimits = [0 5];
 nbi = 10000;
 DeltaT = (tlimits(2)-tlimits(1))/nbi;
 t0 = tlimits(1);
+tf = 0;
 
 % ----------------------setup matrices q et g------------------%
 % --- auto a---%
@@ -28,29 +29,35 @@ for i = 1:nbi
     
     [boolCollision, matriceCoinsAutoA, matriceCoinsAutoB] = detectionCollision(donneesCollisionA, donneesCollisionB, coordADsRepereGlobal, coordBDsRepereGlobal);
     
-    % si il y a une collision
+        % si il y a une collision
     if (boolCollision == 0)
+        %TODO : regler bug il rentre plusieurs fois ici a la fin alors quil
+        %ne devrait rentrer quune seule fois
+        tf = t0; %arret de la simulation
         % TODO : appeler la fonction qui sort le point de collision et la normale unitaire de b vers a
         % je crois que cest calculerPointOuSurfaceCollision
         pointCollision = [2,1,2];
         normale = [0.33,0.33,0.33];
         
         [vaf, vbf] = calculVitessesFinales(qACourante, qBCourante, pointCollision, normale);
-    end
     
-    if(t0 >= tb)
-        matriceGAutoB = 'getMatriceGGlissement';
+        % si ya pas de collision
     else
-        matriceGAutoB = 'getMatriceGRoulement';
+        % TODO : on a pas de SI LES CHARS SONT ARRETES
+        if(t0 >= tb)
+            matriceGAutoB = 'getMatriceGGlissement';
+        else
+            matriceGAutoB = 'getMatriceGRoulement';
+        end
+    
+        % auto A
+        qsolA(i+1,:) = SEDRK4t0(qACourante, DeltaT, matriceGAutoA);
+    
+        % auto B
+        qsolB(i+1,:) = SEDRK4t0(qBCourante, DeltaT, matriceGAutoB);
+    
+        t0 = t0 + DeltaT;
     end
-    
-    % auto A
-    qsolA(i+1,:) = SEDRK4t0(qACourante, DeltaT, matriceGAutoA);
-    
-    % auto B
-    qsolB(i+1,:) = SEDRK4t0(qBCourante, DeltaT, matriceGAutoB);
-    
-    t0 = t0 + DeltaT;
 end
 
 %sample data for now 
