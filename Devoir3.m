@@ -28,7 +28,7 @@ for i = 1:nbi
     [coordBDsRepereGlobal, donneesCollisionB] = getDonneesDetectionCollision(qBCourante, 'b');
     
     [boolCollision, matriceCoinsAutoA, matriceCoinsAutoB] = detectionCollision(donneesCollisionA, donneesCollisionB, coordADsRepereGlobal, coordBDsRepereGlobal);
-    
+    [bool2VoituresArretees] = verifierVoituresArretees(qACourante, qBCourante);
         % si il y a une collision
     if (boolCollision == 0)
         Col1 = 0;
@@ -49,6 +49,15 @@ for i = 1:nbi
         qsolB(i+1,:) = [vbf(1), vbf(2), vbf(3), qBCourante(4), qBCourante(5), qBCourante(6)];
         
         return; %quit Devoir3.m if simulation is over
+    elseif (bool2VoituresArretees == 1)
+        %prendre les dernieres donnnees
+        Col1 = 1;
+        tf = t0;
+        raf = [qACourante(4), qACourante(5)]; 
+        rbf = [qBCourante(4), qBCourante(5)];
+        vaf = [qACourante(1), qACourante(2)];
+        vbf = [qBCourante(1), qBCourante(2)];
+        return;
     else % si ya pas de collision
         % TODO : on a pas de SI LES CHARS SONT ARRETES
         if(t0 >= tb)
