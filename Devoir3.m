@@ -3,7 +3,7 @@ function [Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb)
 % gestion du temps 
 tlimits = [0 1];
 nbi = 10000;
-DeltaT = (tlimits(2)-tlimits(1))/nbi
+DeltaT = (tlimits(2)-tlimits(1))/nbi;
 t0 = tlimits(1);
 
 % ----------------------setup matrices q et g------------------%
@@ -28,13 +28,15 @@ for i = 1:nbi
     
     [boolCollision, matriceCoinsAutoA, matriceCoinsAutoB] = detectionCollision(donneesCollisionA, donneesCollisionB, coordADsRepereGlobal, coordBDsRepereGlobal);
     
-    % TODO : implementer le double for qui detecte sil y a collision avec
-    % les donnees donneesCollisionA, donnneesCollisionB
-    % outer for : surfaces
-    % inner for : points
-    % il doit y avoir deux set ups : un que le solide A a les surfaces et
-    % le B les points, lautre doit avoir solide A a les points et B a les
-    % surfaces (exos avec les schemas quon faisait vendredi)
+    % si il y a une collision
+    if (boolCollision == 0)
+        % TODO : appeler la fonction qui sort le point de collision et la normale unitaire de b vers a
+        % je crois que cest calculerPointOuSurfaceCollision
+        pointCollision = [2,1,2];
+        normale = [0.33,0.33,0.33];
+        
+        [vaf, vbf] = calculVitessesFinales(qACourante, qBCourante, pointCollision, normale);
+    end
     
     if(t0 >= tb)
         matriceGAutoB = 'getMatriceGGlissement';

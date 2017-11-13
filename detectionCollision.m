@@ -13,8 +13,11 @@
 
 function [boolCollision, matriceCoinsAutoA, matriceCoinsAutoB] = detectionCollision(donneesCollisionA, donneesCollisionB, coordADsRepereGlobal, coordBDsRepereGlobal)
 
-boolCollision = false; %normal que ca commence a true car cette methode la detecte sil ny a pas de collision
+%normal que ca commence a true car cette methode la detecte sil ny a pas de collision
+boolCollision = false; 
 % on assume au debut quil y a collision
+% des que tu trouve une surface pour laquelle tous les d sont superieurs a
+% 0, alors il ny a pas de collision (boolCollision devient true)
 
 sommetsEnDessousSurfAPointsB = 0;
 pointsPrLesquelsDsupZeroA = 0;
@@ -50,8 +53,8 @@ if(boolCollision == false) % si tu na pas detecter quil ny avait pas de collisio
 
         sommetsEnDessousSurfBPointsA = 0;
         for j = 1:4 %Chaque sommet de A
-            ra = coordADsRepereGlobal(:,j);
-            d = dot(n, (r-q));
+            ra = transpose(coordADsRepereGlobal(:,j));
+            d = dot(nk, (ra-qk1));
 
             if(d>0)
                 pointsPrLesquelsDsupZeroB = pointsPrLesquelsDsupZeroB + 1 ;
