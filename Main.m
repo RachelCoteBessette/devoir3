@@ -27,53 +27,28 @@ pointsAutoBFin = zeros(1,3);
 imprimerResultatFinal('1', Col1, tf, raf, vaf, rbf, vbf);
 
 %--------------------------------essai 2 -----------------------%
-positionsAutoA = zeros(0,3); 
-positionsAutoB = zeros(0,3);
-pointsAutoAInit = zeros(1,3);
-pointsAutoBInit = zeros(1,3);
-pointsAutoAFin = zeros(1,3);
-pointsAutoBFin = zeros(1,3);
+reinitialiserMatricesGlobales();
 [rai, vai, rbi, vbi, tb] = getDonneesCas(2);
 [Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
 imprimerResultatFinal('2', Col1, tf, raf, vaf, rbf, vbf);
 
 %--------------------------------essai 3 -----------------------%
-positionsAutoA = zeros(0,3); 
-positionsAutoB = zeros(0,3);
-pointsAutoAInit = zeros(1,3);
-pointsAutoBInit = zeros(1,3);
-pointsAutoAFin = zeros(1,3);
-pointsAutoBFin = zeros(1,3);
+reinitialiserMatricesGlobales();
 [rai, vai, rbi, vbi, tb] = getDonneesCas(3);
 [Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
 imprimerResultatFinal('3', Col1, tf, raf, vaf, rbf, vbf);
 %--------------------------------essai 4 -----------------------%
-positionsAutoA = zeros(0,3);  
-positionsAutoB = zeros(0,3);
-pointsAutoAInit = zeros(1,3);
-pointsAutoBInit = zeros(1,3);
-pointsAutoAFin = zeros(1,3);
-pointsAutoBFin = zeros(1,3);
+reinitialiserMatricesGlobales();
 [rai, vai, rbi, vbi, tb] = getDonneesCas(4);
 [Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
 imprimerResultatFinal('4', Col1, tf, raf, vaf, rbf, vbf);
 %--------------------------------essai 5 -----------------------%
-positionsAutoA = zeros(0,3);  
-positionsAutoB = zeros(0,3);
-pointsAutoAInit = zeros(1,3);
-pointsAutoBInit = zeros(1,3);
-pointsAutoAFin = zeros(1,3);
-pointsAutoBFin = zeros(1,3);
+reinitialiserMatricesGlobales();
 [rai, vai, rbi, vbi, tb] = getDonneesCas(5);
 [Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
 imprimerResultatFinal('5', Col1, tf, raf, vaf, rbf, vbf);
 %--------------------------------essai 6 -----------------------%
-positionsAutoA = zeros(0,3); 
-positionsAutoB = zeros(0,3);
-pointsAutoAInit = zeros(1,3);
-pointsAutoBInit = zeros(1,3);
-pointsAutoAFin = zeros(1,3);
-pointsAutoBFin = zeros(1,3);
+reinitialiserMatricesGlobales();
 [rai, vai, rbi, vbi, tb] = getDonneesCas(6);
 [Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
 imprimerResultatFinal('6', Col1, tf, raf, vaf, rbf, vbf);
