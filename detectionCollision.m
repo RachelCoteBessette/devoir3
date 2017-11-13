@@ -19,13 +19,12 @@ boolCollision = false;
 % des que tu trouve une surface pour laquelle tous les d sont superieurs a
 % 0, alors il ny a pas de collision (boolCollision devient true)
 
-sommetsEnDessousSurfAPointsB = 0;
-pointsPrLesquelsDsupZeroA = 0;
 %Surfaces de la Voiture A, points de la voiture B
-for i = 1:4 %Chaque surface de A    
+for i = 1:4 %Chaque surface de A
+    pointsPrLesquelsDsupZeroA = 0; %TRES IMPORTANT
     nk = [donneesCollisionA(16, i) donneesCollisionA(17, i) donneesCollisionA(18, i)] ;
     qk1 = [donneesCollisionA(1, i) donneesCollisionA(2, i) donneesCollisionA(3, i)];
-
+    
     for j = 1:4 %Chaque sommet de B
         %rb va finir par contenir tous les points du solide b
         rb = transpose(coordBDsRepereGlobal(:,j)); %extraire la colonne j (donc le point)
@@ -45,13 +44,13 @@ for i = 1:4 %Chaque surface de A
 end
 
 if(boolCollision == false) % si tu na pas detecter quil ny avait pas de collision (donc tu es toujours a il y a une collision)
-    pointsPrLesquelsDsupZeroB = 0;
+
     %Surfaces de la voiture B, points de la voiture A
     for i = 1:4 %Chaque surface de B
+        pointsPrLesquelsDsupZeroB = 0;
         nk = [donneesCollisionB(16, i) donneesCollisionB(17, i) donneesCollisionB(18, i)] ;
         qk1 = [donneesCollisionB(1, i) donneesCollisionB(2, i) donneesCollisionB(3, i)];
-
-        sommetsEnDessousSurfBPointsA = 0;
+        
         for j = 1:4 %Chaque sommet de A
             ra = transpose(coordADsRepereGlobal(:,j));
             d = dot(nk, (ra-qk1));
