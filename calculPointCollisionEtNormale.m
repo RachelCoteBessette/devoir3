@@ -1,4 +1,4 @@
-function [pointCollision, surfaceCollision, n] = calculerPointOuSurfaceCollision(matricePositionAutoA, matricePositionAutoB)
+function [pointCollision, n] = calculPointCollisionEtNormale(matricePositionAutoA, matricePositionAutoB)
 %
 % Fonction, une fois la collision detectee, qui permet de calculer le coin 
 % ou la surface de collision et renvoie une normale en consequent
@@ -6,7 +6,6 @@ function [pointCollision, surfaceCollision, n] = calculerPointOuSurfaceCollision
 %
 
 % Initialisation 
-surfaceCollision = -1;
 pointCollision = [-1 -1];
 
 [trouveCoinCoin, posCoinCoin, nCoinCoin] = verifierCoinCoin(matricePositionAutoA,matricePositionAutoB);
@@ -20,9 +19,9 @@ end
 autosParallele = verificationAutosParallele(matricePositionAutoA, matricePositionAutoB);
 
 if(autosParallele==1)
-    [surfaceCollision, n] = calculPlanCollision(matricePositionAutoA, matricePositionAutoB);
+    [pointCollision, n] = calculPointCollisionFaceFace(matricePositionAutoA, matricePositionAutoB);
     return;
 else
-    [pointCollision, n] = calculPointCollision(matricePositionAutoA, matricePositionAutoB);
+    [pointCollision, n] = calculPointCollisionCoinFace(matricePositionAutoA, matricePositionAutoB);
     return;
 end
