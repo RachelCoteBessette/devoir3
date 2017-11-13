@@ -14,7 +14,6 @@ DeltaT = (tlimits(2)-tlimits(1))/nbi;
 t0 = tlimits(1);
 tf = 0;
 
-% ----------------------setup matrices q et g------------------%
 % --- auto a---%
 qsolA = zeros(nbi+1, 6);
 %info utile sur atan2: https://en.wikipedia.org/wiki/Atan2
@@ -46,18 +45,14 @@ for i = 1:nbi
     if (boolCollision == 0)
         Col1 = 0;
         tf = t0; 
-        % TODO : appeler la fonction qui sort le point de collision et la normale unitaire de b vers a
-        % je crois que cest calculerPointOuSurfaceCollision
         [pointCollision, n] = calculPointCollisionEtNormale(horzcat(matriceCoinsAutoA,[qACourante(4);qACourante(5);0]),horzcat(matriceCoinsAutoB,[qBCourante(4);qBCourante(5);0]));
         pointCollision = transpose(pointCollision);
         normale = transpose(n);
-%         pointCollision = [2,1,2];
-%         normale = [0.33,0.33,0.33];
         
         [vaf, vbf] = calculVitessesFinales(qACourante, qBCourante, pointCollision, normale);
         
-        raf = [qACourante(4), qACourante(5)];  
-        rbf = [qBCourante(4), qBCourante(5)];    
+        raf = [qACourante(4), qACourante(5), qACourante(6)];  
+        rbf = [qBCourante(4), qBCourante(5), qBCourante(6)];    
         % au lieu denvoyer les matrices finales dans le range kutta, on a pas besoin puisque on les a calculer 
         qsolA(i+1,:) = [vaf(1), vaf(2), vaf(3), qACourante(4), qACourante(5), qACourante(6)];
         qsolB(i+1,:) = [vbf(1), vbf(2), vbf(3), qBCourante(4), qBCourante(5), qBCourante(6)];
@@ -74,10 +69,10 @@ for i = 1:nbi
         %prendre les dernieres donnnees
         Col1 = 1;
         tf = t0;
-        raf = [qACourante(4), qACourante(5)]; 
-        rbf = [qBCourante(4), qBCourante(5)];
-        vaf = [qACourante(1), qACourante(2)];
-        vbf = [qBCourante(1), qBCourante(2)];
+        raf = [qACourante(4), qACourante(5), qACourante(6)]; 
+        rbf = [qBCourante(4), qBCourante(5), qBCourante(6)];
+        vaf = [qACourante(1), qACourante(2), qACourante(3)];
+        vbf = [qBCourante(1), qBCourante(2), qBCourante(3)];
         
         positionCouranteA = [qACourante(4), qACourante(5), qACourante(6)];
         positionCouranteB = [qBCourante(4), qBCourante(5), qBCourante(6)];
