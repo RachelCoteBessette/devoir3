@@ -1,5 +1,12 @@
 function [Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb)
 
+global positionsAutoA;
+global positionsAutoB;
+global pointsAutoAInit;
+global pointsAutoBInit;
+global pointsAutoAFin;
+global pointsAutoBFin;
+
 % gestion du temps 
 tlimits = [0 5];
 nbi = 10000;
@@ -24,8 +31,14 @@ qsolB(1,:) = vertcat(transpose(vbi), transpose(rbi), angleAutoB);
 for i = 1:nbi
     qACourante = qsolA(i,:);
     qBCourante = qsolB(i,:);
+        
     [coordADsRepereGlobal, donneesCollisionA] = getDonneesDetectionCollision(qACourante, 'a');
     [coordBDsRepereGlobal, donneesCollisionB] = getDonneesDetectionCollision(qBCourante, 'b');
+    
+    if(i ==1)
+        pointsAutoAInit = transpose(coordADsRepereGlobal);
+        pointsAutoBInit = transpose(coordBDsRepereGlobal);
+    end
     
     [boolCollision, matriceCoinsAutoA, matriceCoinsAutoB] = detectionCollision(donneesCollisionA, donneesCollisionB, coordADsRepereGlobal, coordBDsRepereGlobal);
     [bool2VoituresArretees] = verifierVoituresArretees(qACourante, qBCourante);
@@ -46,6 +59,13 @@ for i = 1:nbi
         qsolA(i+1,:) = [vaf(1), vaf(2), vaf(3), qACourante(4), qACourante(5), qACourante(6)];
         qsolB(i+1,:) = [vbf(1), vbf(2), vbf(3), qBCourante(4), qBCourante(5), qBCourante(6)];
         
+        
+        positionCouranteA = [qACourante(4), qACourante(5), qACourante(6)];
+        positionCouranteB = [qBCourante(4), qBCourante(5), qBCourante(6)];
+        positionsAutoA = vertcat(positionsAutoA, positionCouranteA);
+        positionsAutoB = vertcat(positionsAutoB, positionCouranteB);
+        pointsAutoAFin = transpose(coordADsRepereGlobal);
+        pointsAutoBFin = transpose(coordBDsRepereGlobal);
         return; %quit Devoir3.m if simulation is over
     elseif (bool2VoituresArretees == 1)
         %prendre les dernieres donnnees
@@ -55,6 +75,13 @@ for i = 1:nbi
         rbf = [qBCourante(4), qBCourante(5)];
         vaf = [qACourante(1), qACourante(2)];
         vbf = [qBCourante(1), qBCourante(2)];
+        
+        positionCouranteA = [qACourante(4), qACourante(5), qACourante(6)];
+        positionCouranteB = [qBCourante(4), qBCourante(5), qBCourante(6)];
+        positionsAutoA = vertcat(positionsAutoA, positionCouranteA);
+        positionsAutoB = vertcat(positionsAutoB, positionCouranteB);
+        pointsAutoAFin = transpose(coordADsRepereGlobal);
+        pointsAutoBFin = transpose(coordBDsRepereGlobal);
         return;
     else % si ya pas de collision
         if(t0 >= tb)
@@ -67,6 +94,11 @@ for i = 1:nbi
         qsolB(i+1,:) = SEDRK4t0(qBCourante, DeltaT, matriceGAutoB);
     
         t0 = t0 + DeltaT;
+        
+        positionCouranteA = [qACourante(4), qACourante(5), qACourante(6)];
+        positionCouranteB = [qBCourante(4), qBCourante(5), qBCourante(6)];
+        positionsAutoA = vertcat(positionsAutoA, positionCouranteA);
+        positionsAutoB = vertcat(positionsAutoB, positionCouranteB);
     end
 
 end

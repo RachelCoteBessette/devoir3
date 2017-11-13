@@ -7,6 +7,18 @@
 %                    Clarence Desmarais 1762064,                %
 %                    Audrey Lebel-Richardson 1665999            %
 % ----------------------------------------------------------- 	%
+global positionsAutoA;
+positionsAutoA = zeros(0,3); %0 rangees par 3 colonnes.. oui 
+global positionsAutoB;
+positionsAutoB = zeros(0,3);
+global pointsAutoAInit;
+pointsAutoAInit = zeros(1,3);
+global pointsAutoBInit;
+pointsAutoBInit = zeros(1,3);
+global pointsAutoAFin;
+pointsAutoAFin = zeros(1,3);
+global pointsAutoBFin;
+pointsAutoBFin = zeros(1,3);
 
 %--------------------------------essai 1 -----------------------%
 
@@ -25,6 +37,8 @@ disp('rbf');
 disp(rbf);
 disp('vbf');
 disp(vbf); 
+
+graphique();
 %--------------------------------essai 2 -----------------------%
 %[rai, vai, rbi, vbi, tb] = getDonneesCas(2);
 %[Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);

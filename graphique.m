@@ -1,45 +1,73 @@
-function graphique(essai)
+function graphique()
+global positionsAutoA; %ces donnees la sont deja stockees
+global positionsAutoB; %ces donnees la sont deja stockees
+global pointsAutoAInit; %ces donnees la sont deja stockees
+global pointsAutoBInit; %ces donnees la sont deja stockees
 
-global positionsBalleOpt1 positionsBalleOpt2 positionsBalleOpt3;
+% TODO : il semble y avoir une perte de precisions dans ces deux matrices ci
+% ce qui fait planter (classerPoints) car les donnees qui a la dedans ne
+% font pas de sens... voir pourquoi ca ne fait pas de sens 
+global pointsAutoAFin;
+global pointsAutoBFin;
 
-% Table
-[hauteurTable, longueurTable, largeurTable] = getDonneesTable();
+mat5PtsPrTracerAInit = classerPoints(pointsAutoAInit);
+mat5PtsPrTracerBInit = classerPoints(pointsAutoBInit);
+mat5PtsPrTracerAFin = classerPoints(pointsAutoAFin); %investiguer via TODO
+mat5PtsPrTracerBFin = classerPoints(pointsAutoBFin); %investiguer via TODO
 
-tableX = [0 longueurTable longueurTable 0 0];
-tableY = [0 0 largeurTable largeurTable 0];
-tableZ = [hauteurTable hauteurTable hauteurTable hauteurTable hauteurTable];
-
-% filet
-[hauteurFilet, largeurFilet] = getDonneesFilet();
-
-overFilet = (largeurFilet - largeurTable)/2;
-    
-filetX = [(longueurTable/2) (longueurTable/2) (longueurTable/2) (longueurTable/2) (longueurTable/2)];
-filetY = [-overFilet (largeurTable + overFilet) (largeurTable + overFilet) -overFilet -overFilet];
-filetZ = [hauteurTable hauteurTable (hauteurTable+hauteurFilet) (hauteurTable+hauteurFilet) hauteurTable];
-
-% Limites du graphe
-limiteX = [0 3];
-limiteY = [-0.5 2];
-limiteZ = [0 2];
-
-% Créer le graphique
+%fonction officielle
 figure
-plot3( positionsBalleOpt1(:, 1), positionsBalleOpt1(:, 2), positionsBalleOpt1(:, 3), '-r',...
-      positionsBalleOpt2(:, 1), positionsBalleOpt2(:, 2), positionsBalleOpt2(:, 3), '-g',...
-      positionsBalleOpt3(:, 1), positionsBalleOpt3(:, 2), positionsBalleOpt3(:, 3), '-b',...	
-      tableX, tableY, tableZ, '-k', ...
-      filetX, filetY, filetZ, '-k');
+plot(positionsAutoA(:,1), positionsAutoA(:,2), '-red', ...
+     positionsAutoB(:,1), positionsAutoB(:,2), '-blue', ...
+     pointsAutoAInit(:,1), pointsAutoAInit(:,2), 'black',...
+     pointsAutoAFin(:,1), pointsAutoAFin(:,2), 'black', ...
+     pointsAutoBInit(:,1), pointsAutoBInit(:,2), 'black', ...
+     pointsAutoBFin(:,1), pointsAutoBFin(:,2), 'black')
+     
+%-----------debut : effacer CECI quand on ne veut plus tester (dummy data)-----%
+%{
+matA = zeros(0,3);
+pointIniA1 = [0,3,0];
+pointIniA2 = [0, -3,0];
+pointIniA3 = [2, 5, 0];
+pointIniA4 = [5,5,0];
+pointsA = zeros(0,3);
+pointsA = vertcat(pointsA, pointIniA1, pointIniA2, pointIniA3, pointIniA4);
 
+tmp1 = [0,0,0];
+tmp2 = [10,15,0];
+tmp3 = [15,20,0];
+tmp4 = [30,18,0];
+tmp5 = [40, 15, 0];
+matA = vertcat(matA,tmp1,tmp2,tmp3,tmp4,tmp5);
+
+matB = zeros(0,3);
+tmp6 = [100, 10, 0];
+tmp7 = [90, 5, 0];
+tmp8 = [80, 10, 0];
+tmp9 = [50, 15,0];
+tmp10 = [40,20,0];
+matB = vertcat(matB,tmp6,tmp7,tmp8,tmp9,tmp10);
+
+figure
+plot(matA(:,1), matA(:,2), '-r', ... %trajectoire centre de masse de a
+     matB(:,1), matB(:,2), '-b', ... %trajectoire centre de masse de b
+     pointsA(:,1), pointsA(:,2), 'c' ... %dessin de la voiture A 
+     );
+%}
+%-----------fin : effacer CECI quand on ne test plus (dummy data)-----%
+ 
 % nommer les axes 
 xlabel('x');
 ylabel('y');
 zlabel('z');
 
+%limites du graphe
+limiteX = [0 100];
+limiteY = [-45, 40];
+
 xlim(limiteX);
 ylim(limiteY);
-zlim(limiteZ);
 
-legend('option 1','option 2', 'option 3');
-
+grid on;
 end

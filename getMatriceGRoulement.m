@@ -3,7 +3,6 @@ function res=getMatriceGRoulement(q0)
 % c est a dire lorsque l'auto roule et ne glisse pas.
 % avec
 %	q0	:   conditions initiales [q(t0)]
-%	w0	:   la vitesse angulaire initiale (en z), elle est supposée constante
 
 res = [ ... 
     0 ...

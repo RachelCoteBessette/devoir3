@@ -4,6 +4,12 @@ function [pointsAutoDansRepereGlobal, donneesDetectionCollision] = getDonneesDet
  
     pointsOrigineAuto = get4PointsOrigineAuto(auto);
     rot = getMatriceRotation(qCourante(6)); % le sixieme element est langle
+    % TODO : utiliser pour debug 
+    %poin1rot = rot*pointsOrigineAuto(:,1);
+    %poin2rot = rot*pointsOrigineAuto(:,2);
+    %point3rot = rot*pointsOrigineAuto(:,3);
+    %point4rot = rot*pointsOrigineAuto(:,4);
+    
     pointsRotates = rot* pointsOrigineAuto; % me donne une 4 colonne, 3 rows
     % pointsRotates(1,:) : extrait la premiere rangee de la matrice pointsRotates
     % qui represente les x pour tous les points

@@ -1,4 +1,5 @@
 function [vaf, vbf] = calculVitessesFinales(qaf,qbf,ptsCollision,n)
+
 % Cette fonction calcul les vitesses finales apres collision
 % angulaires et lineaires.
 % avec
