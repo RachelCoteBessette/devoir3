@@ -6,7 +6,7 @@ function [pointCollision, n] = calculPointCollisionEtNormale(matricePositionAuto
 %
 
 % Initialisation 
-pointCollision = [-1 -1];
+pointCollision = [-1 -1 -1];
 
 [trouveCoinCoin, posCoinCoin, nCoinCoin] = verifierCoinCoin(matricePositionAutoA,matricePositionAutoB);
 

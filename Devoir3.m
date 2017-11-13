@@ -48,9 +48,11 @@ for i = 1:nbi
         tf = t0; 
         % TODO : appeler la fonction qui sort le point de collision et la normale unitaire de b vers a
         % je crois que cest calculerPointOuSurfaceCollision
-        %calculPointCollisionEtNormale(horzcat(matriceCoinsAutoA,[qACourante(4);qACourante(5);0]),horzcat(matriceCoinsAutoB,[qBCourante(4);qBCourante(5);0]));
-        pointCollision = [2,1,2];
-        normale = [0.33,0.33,0.33];
+        [pointCollision, n] = calculPointCollisionEtNormale(horzcat(matriceCoinsAutoA,[qACourante(4);qACourante(5);0]),horzcat(matriceCoinsAutoB,[qBCourante(4);qBCourante(5);0]));
+        pointCollision = transpose(pointCollision);
+        normale = transpose(n);
+%         pointCollision = [2,1,2];
+%         normale = [0.33,0.33,0.33];
         
         [vaf, vbf] = calculVitessesFinales(qACourante, qBCourante, pointCollision, normale);
         

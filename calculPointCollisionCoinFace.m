@@ -17,12 +17,12 @@ function [pointCollision, n] = calculPointCollisionCoinFace(matricePositionAutoA
 %                  4--------------3
 %                      surface 3
 
-pointCollision = [-1 -1];
-n = [-1 -1];
+pointCollision = [-1 -1 -1];
+n = [-1 -1 -1];
 
 nbSurfaces = 4;
 nbCoins = 4;
-epsilon = 0.001;
+epsilon = 0.1;
 
 for i=1:nbSurfaces %Pour tous les surfaces de A
     % equation d une droite y = mx + b
@@ -39,8 +39,6 @@ for i=1:nbSurfaces %Pour tous les surfaces de A
     
     for j=1:nbCoins %Pour tous les coins de B
         pB = matricePositionAutoB(:,j);
-        test1=pB(2);
-        test2=pB(1);
         if(abs(pB(2)-(mA*pB(1)+bA))<epsilon)
             % Le point est sur le plan, il s agit donc de la surface de
             % collision
