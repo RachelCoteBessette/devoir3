@@ -11,9 +11,9 @@ function points = get4PointsOrigineAuto(auto)
 %                  4------ |-------3
 %
 if(auto == 'a')
-    [~, longueur, largeur, ~] = getDonneesAutoA()
+    [~, longueur, largeur, ~] = getDonneesAutoA();
 else
-    [~, longueur, largeur, ~] = getDonneesAutoB()
+    [~, longueur, largeur, ~] = getDonneesAutoB();
 end
 
 point1 = [-longueur/2, largeur/2, 0];

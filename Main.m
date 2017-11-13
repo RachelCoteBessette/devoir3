@@ -9,7 +9,7 @@
 % ----------------------------------------------------------- 	%
 
 %--------------------------------essai 1 -----------------------%
-%sample data for now
+
 [rai, vai, rbi, vbi, tb] = getDonneesCas(1);
 [Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb);
 disp('------ Essai 1 ------');
