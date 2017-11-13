@@ -64,8 +64,8 @@ ylabel('y');
 zlabel('z');
 
 %limites du graphe
-limiteX = [0 100];
-limiteY = [-45, 40];
+limiteX = [-100 100];
+limiteY = [-100, 100];
 
 xlim(limiteX);
 ylim(limiteY);
