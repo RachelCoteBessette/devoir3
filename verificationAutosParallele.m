@@ -17,8 +17,8 @@ droiteB = matricePositionAutoB(:,1)-matricePositionAutoB(:,2);
 angle = acos(dot(droiteA,droiteB)/(norm(droiteA)*norm(droiteB)));
 epsilon = 0.0001; % TO DO confirmer que ce epsilon fait du sens
 test1 = (angle<=epsilon);
-test2 = (abs(degtorad(90)-angle)<=epsilon);
-test3 = (abs(degtorad(180)-angle)<=epsilon);
-if((angle<=epsilon) || (abs(degtorad(90)-angle)<=epsilon) || (abs(degtorad(180)-angle)<=epsilon))
+test2 = (abs(deg2rad(90)-angle)<=epsilon);
+test3 = (abs(deg2rad(180)-angle)<=epsilon);
+if((angle<=epsilon) || (abs(deg2rad(90)-angle)<=epsilon) || (abs(deg2rad(180)-angle)<=epsilon))
     parallele = 1;
 end
