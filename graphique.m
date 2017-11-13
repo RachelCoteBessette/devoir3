@@ -10,10 +10,12 @@ global pointsAutoBInit; %ces donnees la sont deja stockees
 global pointsAutoAFin;
 global pointsAutoBFin;
 
-mat5PtsPrTracerAInit = classerPoints(pointsAutoAInit);
-mat5PtsPrTracerBInit = classerPoints(pointsAutoBInit);
-mat5PtsPrTracerAFin = classerPoints(pointsAutoAFin); %investiguer via TODO
-mat5PtsPrTracerBFin = classerPoints(pointsAutoBFin); %investiguer via TODO
+% il faut dessiner les points representant les autos dans un ordre
+% sinon ca fait un dessin tout croche
+mat5PtsPrTracerAInit = classerPoints(pointsAutoAInit, 'a');
+mat5PtsPrTracerBInit = classerPoints(pointsAutoBInit, 'b');
+mat5PtsPrTracerAFin = classerPoints(pointsAutoAFin, 'a'); 
+mat5PtsPrTracerBFin = classerPoints(pointsAutoBFin, 'b'); 
 
 %fonction officielle
 figure
@@ -33,7 +35,6 @@ pointIniA3 = [2, 5, 0];
 pointIniA4 = [5,5,0];
 pointsA = zeros(0,3);
 pointsA = vertcat(pointsA, pointIniA1, pointIniA2, pointIniA3, pointIniA4);
-
 tmp1 = [0,0,0];
 tmp2 = [10,15,0];
 tmp3 = [15,20,0];

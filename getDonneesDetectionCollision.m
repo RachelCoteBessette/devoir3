@@ -4,7 +4,7 @@ function [pointsAutoDansRepereGlobal, donneesDetectionCollision] = getDonneesDet
  
     pointsOrigineAuto = get4PointsOrigineAuto(auto);
     rot = getMatriceRotation(qCourante(6)); % le sixieme element est langle
-    % TODO : utiliser pour debug 
+    % utiliser pour debug au besoin
     %poin1rot = rot*pointsOrigineAuto(:,1);
     %poin2rot = rot*pointsOrigineAuto(:,2);
     %point3rot = rot*pointsOrigineAuto(:,3);

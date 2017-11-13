@@ -1,4 +1,4 @@
-function matrice5PointsClassee=classerPoints(matrice4Points)
+function matrice5PointsClassee=classerPoints(matrice4Points, auto)
 % Cette fonction prend 4 points classes nimporte comment 
 % et les classe en ordre pour quils soient tous places
 % un a cote de lautre. (utile pour dessiner voiture dans graphe final)
@@ -13,6 +13,13 @@ function matrice5PointsClassee=classerPoints(matrice4Points)
 %                   ]
 % retourne 5 points pour tracer une droite qui revient au point initial
 
+hauteur = 0;
+if(auto == 'a')
+    [~, longueur, largeur, ~] = getDonneesAutoA(); 
+else
+    [~, longueur, largeur, ~] = getDonneesAutoB(); 
+end
+
 
 matrice5PointsClassee = zeros(0, 3);
 
@@ -26,7 +33,8 @@ matrice4Points(1,:) = [];
 %trouver parmis les points celui avec le meme x
 for i=1:3
     pointEvalue = matrice4Points(i,:);
-    if (round(point1(1),2) == round(pointEvalue(1),2))
+    distanceEntre2Points = getDistancesEntre2Points(pointEvalue, point1);
+    if (round(distanceEntre2Points,1) == round(largeur,1))
         %mettre le point 2 dans la matrice
         matrice4Points(i,:) = []; %delete le point de la matrice jen ai plus besoin
         matrice5PointsClassee = vertcat(matrice5PointsClassee, pointEvalue);
@@ -34,10 +42,11 @@ for i=1:3
     end
 end
 
+point2 = matrice5PointsClassee(2,:);
 for i=1:2
     pointEvalue = matrice4Points(i,:);
-    point2 = matrice5PointsClassee(2,:);
-    if (round(point2(2),2) == round(pointEvalue(2),2))
+    distanceEntre2Points = getDistancesEntre2Points(pointEvalue, point2);
+    if (round(distanceEntre2Points,1) == round(longueur,1))
         %mettre le point3 dans la matrice
         matrice4Points(i,:) = []; %delete le points de la matrice que jai plus besoin
         matrice5PointsClassee = vertcat(matrice5PointsClassee, pointEvalue);
