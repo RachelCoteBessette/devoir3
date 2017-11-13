@@ -8,7 +8,7 @@ global pointsAutoAFin;
 global pointsAutoBFin;
 
 % gestion du temps 
-tlimits = [0 5];
+tlimits = [0 20];
 nbi = 10000;
 DeltaT = (tlimits(2)-tlimits(1))/nbi;
 t0 = tlimits(1);
