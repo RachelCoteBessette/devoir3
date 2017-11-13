@@ -8,6 +8,10 @@ function [vaf, vbf]=vf(rap,rbp,vapf,vbpf,waf,wbf)
 %               centre de masse de l auto a
 %    n       : vecteur normal au plan de collision
 
+%to debug %waf should be 1x3 matrix not 3x3, erase tmps when finished
+%debugging
+tmp1 = cross(waf,transpose(rap));
+tmp2 = vapf - tmp1;
 vaf = vapf - cross(waf,rap);
 vbf = vbpf - cross(wbf,rbp);
 

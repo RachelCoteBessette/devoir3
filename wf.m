@@ -12,6 +12,6 @@ function [waf, wbf]=wf(wai,wbi,rap,rbp,Ia,Ib,n,vrmoins,j)
 waf = [0 0 0];
 wbf = [0 0 0];
 
-waf = wai + j*inv(Ia)*(cross(rap,n));
-wbf = wbi + j*inv(Ib)*(cross(rbp,n));
+waf = wai + j*inv(Ia)*(transpose(cross(rap,n)));
+wbf = wbi + j*inv(Ib)*(transpose(cross(rbp,n)));
 

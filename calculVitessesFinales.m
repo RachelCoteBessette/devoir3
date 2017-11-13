@@ -31,8 +31,8 @@ vrmoins = dot(n,(vitessePointContact(vai,wai,ptsCollision)-vitessePointContact(v
 [~,~,e] = getConstantesProbleme();
 Ia = matriceInertie(ma,La,la,ha,qaf(6));
 Ib = matriceInertie(mb,Lb,lb,hb,qbf(6));
-Ga = dot(n,(cross(inv(Ia)*(cross(rap,n)),rap)));
-Gb = dot(n,(cross(inv(Ib)*(cross(rbp,n)),rbp)));
+Ga = dot(n,(cross(inv(Ia)*(transpose(cross(rap,n))),rap)));
+Gb = dot(n,(cross(inv(Ib)*(transpose(cross(rbp,n))),rbp)));
 j = (-1)*(1+e)*vrmoins/(1.0/ma+1.0/mb+Ga+Gb);
 
 % vapi vitesse lineaire au point de collision pour l auto A avant la collision

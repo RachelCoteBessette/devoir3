@@ -1,7 +1,7 @@
 function [Col1 tf raf vaf rbf vbf] = Devoir3(rai,vai,rbi, vbi, tb)
 
 % gestion du temps 
-tlimits = [0 1];
+tlimits = [0 5];
 nbi = 10000;
 DeltaT = (tlimits(2)-tlimits(1))/nbi;
 t0 = tlimits(1);
