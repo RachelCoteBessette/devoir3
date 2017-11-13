@@ -43,8 +43,8 @@ function [pointsAutoDansRepereGlobal, donneesDetectionCollision] = getDonneesDet
     nkSurf1 = produitVectSurf1/ norm(produitVectSurf1); 
     
     % surface 2, reliant les points 2-3
-    qk1Surf2 = pointsAutoDansRepereGlobal(:,3);
-    qk2Surf2 = pointsAutoDansRepereGlobal(:,2);
+    qk1Surf2 = pointsAutoDansRepereGlobal(:,2);
+    qk2Surf2 = pointsAutoDansRepereGlobal(:,3);
     qk3Surf2 = qk2Surf2 + transpose([0, 0, -1]);
     pk1Surf2 = qk1Surf2 - qk2Surf2;
     pk2Surf2 = qk1Surf2 - qk3Surf2;
@@ -52,8 +52,8 @@ function [pointsAutoDansRepereGlobal, donneesDetectionCollision] = getDonneesDet
     nkSurf2 = produitVectSurf2/ norm(produitVectSurf2);  
     
     % surface 3, reliant les points 3-4
-    qk1Surf3 = pointsAutoDansRepereGlobal(:,4);
-    qk2Surf3 = pointsAutoDansRepereGlobal(:,3);
+    qk1Surf3 = pointsAutoDansRepereGlobal(:,3);
+    qk2Surf3 = pointsAutoDansRepereGlobal(:,4);
     qk3Surf3 = qk2Surf3 + transpose([0, 0, -1]);
     pk1Surf3 = qk1Surf3 - qk2Surf3;
     pk2Surf3 = qk1Surf3 - qk3Surf3;
@@ -61,8 +61,8 @@ function [pointsAutoDansRepereGlobal, donneesDetectionCollision] = getDonneesDet
     nkSurf3 = produitVectSurf3/ norm(produitVectSurf3);  
     
     %surface 4, reliant les points 1,4
-    qk1Surf4 = pointsAutoDansRepereGlobal(:,1);
-    qk2Surf4 = pointsAutoDansRepereGlobal(:,4);
+    qk1Surf4 = pointsAutoDansRepereGlobal(:,4);
+    qk2Surf4 = pointsAutoDansRepereGlobal(:,1);
     qk3Surf4 = qk2Surf4 + transpose([0, 0, -1]);
     pk1Surf4 = qk1Surf4 - qk2Surf4;
     pk2Surf4 = qk1Surf4 - qk3Surf4;
