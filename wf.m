@@ -11,7 +11,6 @@ function [waf, wbf]=wf(wai,wbi,rap,rbp,Ia,Ib,n,vrmoins,j)
 % Initialisation des valeurs de retour
 waf = [0 0 0];
 wbf = [0 0 0];
-
-waf = wai + j*inv(Ia)*(transpose(cross(rap,n)));
-wbf = wbi + j*inv(Ib)*(transpose(cross(rbp,n)));
+waf = wai + transpose(j*inv(Ia)*(transpose(cross(rap,n))));
+wbf = wbi + transpose(j*inv(Ib)*(transpose(cross(rbp,n))));
 
