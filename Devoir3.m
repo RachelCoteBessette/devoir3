@@ -32,9 +32,7 @@ for i = 1:nbi
         % si il y a une collision
     if (boolCollision == 0)
         Col1 = 0;
-        %TODO : regler bug il rentre plusieurs fois ici a la fin alors quil
-        %ne devrait rentrer quune seule fois
-        tf = t0; %arret de la simulation
+        tf = t0; 
         % TODO : appeler la fonction qui sort le point de collision et la normale unitaire de b vers a
         % je crois que cest calculerPointOuSurfaceCollision
         pointCollision = [2,1,2];
@@ -59,17 +57,13 @@ for i = 1:nbi
         vbf = [qBCourante(1), qBCourante(2)];
         return;
     else % si ya pas de collision
-        % TODO : on a pas de SI LES CHARS SONT ARRETES
         if(t0 >= tb)
             matriceGAutoB = 'getMatriceGGlissement';
         else
             matriceGAutoB = 'getMatriceGRoulement';
         end
     
-        % auto A
         qsolA(i+1,:) = SEDRK4t0(qACourante, DeltaT, matriceGAutoA);
-    
-        % auto B
         qsolB(i+1,:) = SEDRK4t0(qBCourante, DeltaT, matriceGAutoB);
     
         t0 = t0 + DeltaT;
