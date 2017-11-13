@@ -31,6 +31,7 @@ for i = 1:nbi
     
         % si il y a une collision
     if (boolCollision == 0)
+        Col1 = 0;
         %TODO : regler bug il rentre plusieurs fois ici a la fin alors quil
         %ne devrait rentrer quune seule fois
         tf = t0; %arret de la simulation
@@ -40,9 +41,15 @@ for i = 1:nbi
         normale = [0.33,0.33,0.33];
         
         [vaf, vbf] = calculVitessesFinales(qACourante, qBCourante, pointCollision, normale);
-    
-        % si ya pas de collision
-    else
+        
+        raf = [qACourante(4), qACourante(5)];  
+        rbf = [qBCourante(4), qBCourante(5)];    
+        % au lieu denvoyer les matrices finales dans le range kutta, on a pas besoin puisque on les a calculer 
+        qsolA(i+1,:) = [vaf(1), vaf(2), vaf(3), qACourante(4), qACourante(5), qACourante(6)];
+        qsolB(i+1,:) = [vbf(1), vbf(2), vbf(3), qBCourante(4), qBCourante(5), qBCourante(6)];
+        
+        return; %quit Devoir3.m if simulation is over
+    else % si ya pas de collision
         % TODO : on a pas de SI LES CHARS SONT ARRETES
         if(t0 >= tb)
             matriceGAutoB = 'getMatriceGGlissement';
@@ -58,13 +65,11 @@ for i = 1:nbi
     
         t0 = t0 + DeltaT;
     end
+
 end
 
-%sample data for now 
-Col1 = 1;
-tf = 2.1;
-raf = [3.2,2.2,3.2];
-vaf = [3.2,3.2,2.2];
-rbf = [3.2,3.2,3.2];
-vbf = [3.2,3.2,3.2];
+
+
+
+
 
