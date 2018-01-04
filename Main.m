@@ -1,7 +1,7 @@
 % ----------------------------------------------------------- 	%
 %  NOM DU FICHIER:   Main.m                               	    %
 %                                                             	%
-%  DESCRIPTION:      Script principal du devoir 2 de PHS4700    %
+%  DESCRIPTION:      Script principal du devoir 3 de PHS4700    %
 %                                                             	%
 %  AUTEUR:           Rachel Côté Bessette 1721384,    			%
 %                    Clarence Desmarais 1762064,                %
